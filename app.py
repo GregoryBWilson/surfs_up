@@ -57,6 +57,7 @@ def precipitation():
    precipitation = session.query(Measurement.date, Measurement.prcp).\
     filter(Measurement.date >= prev_year).all()
    precip = {date: prcp for date, prcp in precipitation}
+   session.close()
    return jsonify(precip)
 
 # Create the stations route
@@ -66,6 +67,7 @@ def precipitation():
 def stations():
     results = session.query(Station.station).all()
     stations = list(np.ravel(results))
+    session.close()
     return jsonify(stations=stations)
 
 # Create the temperature observations route
@@ -78,6 +80,7 @@ def temp_monthly():
       filter(Measurement.station == 'USC00519281').\
       filter(Measurement.date >= prev_year).all()
     temps = list(np.ravel(results))
+    session.close()
     return jsonify(temps=temps)
 
 # To see the minimum, maximum, and average temperatures we'll create a route for our summary statistics report.
@@ -100,5 +103,6 @@ def stats(start=None, end=None):
         filter(Measurement.date >= start).\
         filter(Measurement.date <= end).all()
     temps = list(np.ravel(results))
+    session.close()
     return jsonify(temps)
 
