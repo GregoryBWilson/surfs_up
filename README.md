@@ -2,15 +2,15 @@
 
 ## 1 Overview 
 
-The analysis was conducted in support of a Surf and Shakes shop idea that I had while vacationing in Hawaii, because I required investors to finance the operations.  I reached out the a famous surfer, W. Avy, who likes my business plan but needs more detail.   I conducted some  preliminary analysis, but he wants more information about temperature trends before investing in the surf shop idea. He is specifically interested in temperature data for the months of June and December in Oahu.  He will be using this information to determine if a surf and ice cream shop business could be sustainable year-round.
+The analysis was conducted in support of a Surf and Shakes shop idea that I had while vacationing in Hawaii, because I required investors to finance the operations.  I reached out to a famous surfer, W. Avy, who liked my business plan but needs more detail.   I conducted some preliminary analysis, but he wants more information about temperature trends before investing in the surf shop idea. He is specifically interested in temperature data for the months of June and December in Oahu.  He will be using this information to determine if a surf and ice cream shop business could be sustainable year-round.
 
 ## 2 Results
 
-The following sections discuss the analysis of weather data for the island of Oahu.  The derivation of statistical data for the months of June and December are presented in sections 2.1 and 2.2 respectively.  In addition to the requested statistical analysis of the monthly data I have also added queries to extract average daily information for both temperature and precipitation.  This analysis can be found at the end of each of these two sections.  In section 2.3, I discuss in further detail the outliers that exist and how there affect the data and how they can appropriately be explained to investors.
+The following sections discuss the analysis of weather data for the island of Oahu.  The derivation of statistical data for the months of June and December are presented in sections 2.1 and 2.2 respectively.  In addition to the requested statistical analysis of the monthly data, I have also added queries to extract average daily information for both temperature and precipitation.  This analysis can be found at the end of each of these two sections.  In section 2.3, I discuss in further detail the outliers that exist and how they affect the data and how they can appropriately be explained to investors.
 
 ### 2.1 Analysis of June Weather
 
-Analysis of the weather involved establishing a connection with a SQLite database that contains temperature and precipitations readings from 2010 to 2017.  The database query was written to retrieve temperatures for the month of June from "Measurement" table.  It should be noted that we wanted to get June data for all years so that we would have a good representation of  June's typical weather.  The query is shown in the code fence  below.
+Analysis of the weather involved establishing a connection with a SQLite database that contains temperature and precipitation readings from 2010 to 2017.  The database query was written to retrieve temperatures for the month of June from the "Measurement" table.  It should be noted that we wanted to get June data for all years so that we would have a good representation of  June's typical weather.  The query is shown in the code fence  below.
 
 ```python
 sel = [Measurement.tobs]
@@ -20,7 +20,7 @@ June_Query = session.query(*sel).\
 
 
 
-Creating and empty list and then iterating through the rows of the query we were then able to construct a list of June temperature data.
+Creating an empty list and then iterating through the rows of the query we were then able to construct a list of June temperature data.
 
 ```python
 June_List = []
@@ -97,7 +97,7 @@ Conducting a similar analysis on precipitation for June we can see, in figure 3 
 
 ### 2.2 Analysis of December Weather
 
-Similar to the analysis of the weather in June, we establishing a connection with a SQLite database that contains temperature and precipitations readings from 2010 to 2017.  The database query was written to retrieve temperatures for the month of December from "Measurement" table.  It should be noted that we wanted to get December data for all years so that we would have a good representation of  December's typical weather.  The query is shown in the code fence  below.
+Similar to the analysis of the weather in June, we established a connection with a SQLite database that contains temperature and precipitation readings from 2010 to 2017.  The database query was written to retrieve temperatures for the month of December from "Measurement" table.  It should be noted that we wanted to get December data for all years so that we would have a good representation of  December's typical weather.  The query is shown in the code fence  below.
 
 ```python
 sel = [Measurement.tobs]
@@ -192,7 +192,7 @@ The precipitation data presented in figure 6 of section 2.2 above, is an excelle
 
 ***Figure 7 - December Precipitation Outliers***
 
-Filtering the dataframe where the 'day' column was first added you can see that in December of 2010 a significant storm was recorded in Oahu.  With numerous reading above 3 inches of rain the outliers were created.
+Filtering the dataframe where the 'day' column was first added you can see that in December of 2010 a significant storm was recorded in Oahu.  With numerous readings above 3 inches of rain the outliers were created.
 
 ![/Resources/8_December_Outliers_Explained.png](Resources/8_December_Outliers_Explained.png "***Figure 8 - December Outliers Explained***")
 
@@ -202,13 +202,13 @@ It is really important to understand that these outliers can be explained by eve
 
 ## 3 Summary
 
-Looking at monthly statistics for two month in the year as well as daily trends for each of these months has confirmed that Oahu will be and excellent place to set up a Surf and Shakes shop.  
+Looking at monthly statistics for two months in the year as well as daily trends for each of these months has confirmed that Oahu will be and excellent place to set up a Surf and Shakes shop.  
 
 #### Observations
 
 - December has lower mean temperatures than June, but the difference is less than four degrees.
-- December  temperatures have higher variably than June, but both months median temperature is in the seventies.
-- December and June surprisingly have very similar maximum temperatures.  This mean in either month we can expect to see temperatures in the low eighties - hot enough for surfing and drinking shakes, but not so hot that people want to stay at home.
+- December  temperatures have higher variability than June, but both month's median temperature is in the seventies.
+- December and June surprisingly have very similar maximum temperatures.  This means that in either month we can expect to see temperatures in the low eighties - hot enough for surfing and drinking shakes, but not so hot that people want to stay at home.
 
 #### Bottom-line
 

@@ -1,3 +1,5 @@
+:: I created this file to open ananconda in the right directory for me automatically
+
 :: Start by opening up Anaconda Powershell. Once you've done that, enter this command.
 :: Start Anaconda from a command file
 :: call <anaconda_dir>/Scripts/activate.bat <anaconda_dir>
